@@ -30,7 +30,7 @@ These factors directly affect yield, income stability, and long-term soil qualit
 
 ## Why It Matters
 
-Even a 10% improvement in potato yield in Tamil Nadu translates to an extrapolated additional 20,000 tonnes of production, boosting farmer incomes by approximately ₹80–100 crore at today’s farm-gate prices. Optimizing growth stage interventions and nutrient management is not only a matter of food security but a path to economic transformation for farming communities.
+Considering that India is the second largest potato - producing country in the world as of 2025, even a 10% yield improvement (~9,000 tonnes) in Tamil Nadu's potato production could generate an estimated ₹1 crore in additional farm-gate revenue. Optimizing growth stage interventions and nutrient management is not only a matter of food security but a path to economic transformation for farming communities.
 
 ## Methodology
 
@@ -182,13 +182,8 @@ State-wise farmer community platforms for knowledge sharing.
 
 
 ## ML Model Screenshots
-<img src="ML-Screenshot/endpoints.png" alt="MLModel1" width="3600" height="600"/>
-<img src="ML-Screenshot/get-request.png" alt="MLModel2" width="600" height="600"/>
-<img src="ML-Screenshot/image-result.png" alt="MLModel2" width="600" height="600"/>
-<img src="ML-Screenshot/ml-predict.png" alt="MLModel2" width="600" height="600"/>
-<img src="ML-Screenshot/ml-predict2.png" alt="MLModel2" width="600" height="600"/>
-
-
+<img src="screenshots/mlmodel1.png" alt="MLModel1" width="300" height="200"/>
+<img src="screenshots/mlmodel2.png" alt="MLModel2" width="300" height="200"/>
 <!-- Add more ML screenshots -->
 
 ---
