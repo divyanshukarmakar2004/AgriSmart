@@ -164,15 +164,15 @@ State-wise farmer community platforms for knowledge sharing.
 ---
 
 ### Website Screenshots
-<img src="Website-Screenshot/Screenshot 2025-09-05 111833.png" alt="Website1" width="300" height="200"/>
-<img src="Website-Screenshot/Screenshot 2025-09-05 111844.png" alt="Website2" width="300" height="200"/>
-<img src="Website-Screenshot/Screenshot 2025-09-05 111916.png" alt="Website2" width="300" height="200"/>
-<img src="Website-Screenshot/Screenshot 2025-09-05 111935.png" alt="Website2" width="300" height="200"/>
-<img src="Website-Screenshot/Screenshot 2025-09-05 111950.png" alt="Website2" width="300" height="200"/>
-<img src="Website-Screenshot/Screenshot 2025-09-05 111959.png" alt="Website2" width="300" height="200"/>
-<img src="Website-Screenshot/Screenshot 2025-09-05 112007.png" alt="Website2" width="300" height="200"/>
-<img src="Website-Screenshot/Screenshot 2025-09-05 112031.png" alt="Website2" width="300" height="200"/>
-<img src="Website-Screenshot/Screenshot 2025-09-05 112043.png" alt="Website2" width="300" height="200"/>
+<img src="Website-Screenshot/Screenshot 2025-09-05 111833.png" alt="Website1" width="600" height="600"/>
+<img src="Website-Screenshot/Screenshot 2025-09-05 111844.png" alt="Website2" width="600" height="600"/>
+<img src="Website-Screenshot/Screenshot 2025-09-05 111916.png" alt="Website2" width="600" height="600"/>
+<img src="Website-Screenshot/Screenshot 2025-09-05 111935.png" alt="Website2" width="600" height="600"/>
+<img src="Website-Screenshot/Screenshot 2025-09-05 111950.png" alt="Website2" width="600" height="600"/>
+<img src="Website-Screenshot/Screenshot 2025-09-05 111959.png" alt="Website2" width="600" height="600"/>
+<img src="Website-Screenshot/Screenshot 2025-09-05 112007.png" alt="Website2" width="600" height="600"/>
+<img src="Website-Screenshot/Screenshot 2025-09-05 112031.png" alt="Website2" width="600" height="600"/>
+<img src="Website-Screenshot/Screenshot 2025-09-05 112043.png" alt="Website2" width="600" height="600"/>
 
 
 
