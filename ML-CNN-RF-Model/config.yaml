@@ -1,0 +1,246 @@
+# AgriSmart Configuration File
+# Configuration parameters for agricultural satellite imagery processing and CNN training
+
+# Data paths
+paths:
+  img_data: "D:/Users/shukl/Downloads/AgriSmart/S2B_MSIL2A_20250606T050649_N0511_R019_T43PGP_20250606T084415.SAFE/GRANULE/L2A_T43PGP_A043088_20250606T052442/IMG_DATA/"
+  processed_data: "data/processed/"
+  patches_data: "data/patches/"
+  yield_data: "data/yield_data/"
+  outputs: "outputs/"
+  models: "models/"
+  logs: "logs/"
+
+# Sentinel-2 data configuration
+sentinel2:
+  tile_id: "T43PGP_20250606T050649"
+  bands:
+    # 10m resolution bands (present in your SAFE)
+    B02: "R10m/T43PGP_20250606T050649_B02_10m.jp2" # Blue
+    B03: "R10m/T43PGP_20250606T050649_B03_10m.jp2" # Green
+    B04: "R10m/T43PGP_20250606T050649_B04_10m.jp2" # Red
+    B08: "R10m/T43PGP_20250606T050649_B08_10m.jp2" # NIR
+    B05: "R20m/T43PGP_20250606T050649_B05_20m.jp2" # Red Edge (20m -> resample)
+    # 20m resolution band (present in SAFE)
+  cloud_mask_band: "R20m/T43PGP_20250606T050649_SCL_20m.jp2"
+  # Quality assessment bands
+  quality:
+    SCL: "R20m/T43PGP_20250606T050649_SCL_20m.jp2" # Scene Classification Layer
+    AOT: "R10m/T43PGP_20250606T050649_AOT_10m.jp2" # Aerosol Optical Thickness
+    WVP: "R10m/T43PGP_20250606T050649_WVP_10m.jp2" # Water Vapor
+
+# Vegetation indices thresholds (potato-specific)
+indices:
+  ndvi:
+    low_threshold: 0.3
+    mid_threshold: 0.6
+    high_threshold: 0.8
+  ndre:
+    low_threshold: 0.2
+    mid_threshold: 0.4
+    high_threshold: 0.6
+  # Additional indices
+  gndvi:
+    low_threshold: 0.2
+    mid_threshold: 0.4
+    high_threshold: 0.6
+  savi:
+    l_factor: 0.5
+    low_threshold: 0.2
+    mid_threshold: 0.4
+    high_threshold: 0.6
+
+# Growth stage classification
+growth_stages:
+  early:
+    name: "Early Stage (Planting to 30 days)"
+    ndvi_range: [0.0, 0.3]
+    color: [255, 255, 0] # Yellow
+  mid:
+    name: "Mid Stage (30-60 days)"
+    ndvi_range: [0.3, 0.6]
+    color: [0, 255, 0] # Green
+  late:
+    name: "Late Stage (60+ days)"
+    ndvi_range: [0.6, 1.0]
+    color: [0, 128, 0] # Dark Green
+
+# Nutrient/fertility classification
+nutrient_levels:
+  low:
+    name: "Low Fertility"
+    ndvi_range: [0.0, 0.3]
+    color: [255, 0, 0] # Red
+  medium:
+    name: "Medium Fertility"
+    ndvi_range: [0.3, 0.6]
+    color: [255, 255, 0] # Yellow
+  high:
+    name: "High Fertility"
+    ndvi_range: [0.6, 1.0]
+    color: [0, 255, 0] # Green
+
+# CNN model configuration
+cnn:
+  # Model architecture (7 channels: B02,B03,B04,B08,B05 + NDVI + NDRE)
+  input_shape: [256, 256, 6] # Height, Width, Channels (B02,B03,B04,B08 + NDVI + NDRE)
+  num_classes: 3
+  model_type: "attention" # "basic" or "attention"
+
+  # Training parameters (quick train)
+  epochs: 5
+  batch_size: 8
+  learning_rate: 0.001
+  test_size: 0.2
+  validation_split: 0.2
+
+  # Data augmentation
+  augmentation:
+    enabled: true
+    horizontal_flip: 0.5
+    vertical_flip: 0.5
+    rotation: 45
+    brightness_contrast: 0.2
+    gaussian_noise: 0.3
+    blur: 0.3
+
+  # Callbacks
+  callbacks:
+    early_stopping:
+      patience: 10
+      monitor: "val_accuracy"
+    reduce_lr:
+      factor: 0.5
+      patience: 5
+      min_lr: 1e-7
+    model_checkpoint:
+      monitor: "val_accuracy"
+      save_best_only: true
+
+# Patch creation parameters
+patches:
+  patch_size: 256
+  overlap: 0.5
+  min_valid_pixels: 0.9 # Minimum fraction of valid pixels in patch
+  channels: 5 # kept for compatibility; actual channels are derived from available bands + indices
+
+# Processing parameters
+processing:
+  # Resampling
+  target_resolution: 10 # meters
+  resampling_method: "bilinear"
+
+  # Cloud masking
+  cloud_masking:
+    enabled: true
+    scl_cloud_classes: [8, 9, 10, 11] # Cloud/Cirrus/Snow classes masked
+    max_cloud_percentage: 20
+
+  # Normalization
+  normalization:
+    method: "minmax" # "minmax" or "zscore"
+    scale_factor: 10000 # Sentinel-2 scale factor
+
+  # Cropping
+  crop:
+    enabled: false
+    bounds: [1000, 1000, 2000, 2000] # [xmin, ymin, xmax, ymax]
+
+# Output configuration
+outputs:
+  # File formats
+  image_format: "PNG"
+  data_format: "NPZ"
+  model_format: "H5"
+
+  # Map outputs
+  maps:
+    ndvi: true
+    ndre: true
+    growth_stages: true
+    nutrient_map: true
+    rgb_composite: true
+
+  # Statistics
+  statistics:
+    enabled: true
+    save_json: true
+    save_csv: true
+
+  # Recommendations
+  recommendations:
+    enabled: true
+    save_json: true
+    print_console: true
+
+# Agricultural recommendations (potato-specific)
+recommendations:
+  # Irrigation (mm per application, frequency in days)
+  irrigation:
+    early_low: { amount: 15, frequency: 2, method: "Drip irrigation" }
+    early_medium: { amount: 12, frequency: 3, method: "Drip irrigation" }
+    early_high: { amount: 10, frequency: 4, method: "Drip irrigation" }
+    mid_low: { amount: 20, frequency: 2, method: "Drip irrigation" }
+    mid_medium: { amount: 18, frequency: 3, method: "Drip irrigation" }
+    mid_high: { amount: 15, frequency: 4, method: "Drip irrigation" }
+    late_low: { amount: 25, frequency: 2, method: "Drip irrigation" }
+    late_medium: { amount: 22, frequency: 3, method: "Drip irrigation" }
+    late_high: { amount: 20, frequency: 4, method: "Drip irrigation" }
+
+  # Fertilizer (kg/ha)
+  fertilizer:
+    early_low: { N: 150, P: 80, K: 120, type: "NPK 19:19:19" }
+    early_medium: { N: 120, P: 60, K: 100, type: "NPK 19:19:19" }
+    early_high: { N: 100, P: 40, K: 80, type: "NPK 19:19:19" }
+    mid_low: { N: 180, P: 100, K: 140, type: "NPK 20:20:20" }
+    mid_medium: { N: 150, P: 80, K: 120, type: "NPK 20:20:20" }
+    mid_high: { N: 120, P: 60, K: 100, type: "NPK 20:20:20" }
+    late_low: { N: 200, P: 120, K: 160, type: "NPK 20:20:20" }
+    late_medium: { N: 170, P: 100, K: 140, type: "NPK 20:20:20" }
+    late_high: { N: 140, P: 80, K: 120, type: "NPK 20:20:20" }
+
+# Logging configuration
+logging:
+  level: "INFO" # DEBUG, INFO, WARNING, ERROR
+  file: "logs/agrismart.log"
+  console: true
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Performance settings
+performance:
+  # Memory management
+  memory_limit: "8GB"
+  chunk_size: 1000
+
+  # Parallel processing
+  num_workers: 4
+  use_gpu: true
+
+  # Caching
+  cache_enabled: true
+  cache_dir: "cache/"
+
+# Validation settings
+validation:
+  # Cross-validation
+  cv_folds: 5
+  random_state: 42
+
+  # Metrics
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+    - "confusion_matrix"
+
+  # Thresholds
+  min_accuracy: 0.75
+  min_f1_score: 0.70
+
+# Development settings
+development:
+  debug: false
+  test_mode: false
+  sample_size: null # null for full dataset, or number for testing
+  quick_test: false # Use smaller patches and fewer epochs for quick testing
