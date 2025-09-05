@@ -181,19 +181,6 @@ State-wise farmer community platforms for knowledge sharing.
 ---
 
 
-
-## Machine Learning Model Description
-The app uses ML models for:
-1. **Crop Health Analysis**  
-   - NDVI and NDRE indices to identify crop stress  
-   - Nutrient maps generated from images  
-2. **Disease Detection**  
-   - CNN-based image classification to detect crop diseases from leaf images  
-
-Models are trained on publicly available datasets as well as synthetic farm data.  
-
----
-
 ## ML Model Screenshots
 <img src="screenshots/mlmodel1.png" alt="MLModel1" width="300" height="200"/>
 <img src="screenshots/mlmodel2.png" alt="MLModel2" width="300" height="200"/>
