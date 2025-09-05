@@ -123,6 +123,12 @@ Advanced pest/disease detection using hyperspectral imaging.
 State-wise farmer community platforms for knowledge sharing.
 
 
+## PipeLine Workflow
+
+<img src="pipeline_workflow.jpg" alt="Screenshot18" width="600" height="600"/>
+
+
+
 
 
 
