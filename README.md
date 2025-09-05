@@ -182,8 +182,13 @@ State-wise farmer community platforms for knowledge sharing.
 
 
 ## ML Model Screenshots
-<img src="screenshots/mlmodel1.png" alt="MLModel1" width="300" height="200"/>
-<img src="screenshots/mlmodel2.png" alt="MLModel2" width="300" height="200"/>
+<img src="ML-Screenshot/endpoints.png" alt="MLModel1" width="3600" height="600"/>
+<img src="ML-Screenshot/get-request.png" alt="MLModel2" width="600" height="600"/>
+<img src="ML-Screenshot/image-result.png" alt="MLModel2" width="600" height="600"/>
+<img src="ML-Screenshot/ml-predict.png" alt="MLModel2" width="600" height="600"/>
+<img src="ML-Screenshot/ml-predict2.png" alt="MLModel2" width="600" height="600"/>
+
+
 <!-- Add more ML screenshots -->
 
 ---
