@@ -13,7 +13,7 @@ The platform is designed to be scalable, cost-effective, and farmer-centric, wit
 
 ## Problem Statement
 
-Potato farmers in Tamil Nadu face persistent challenges that reduce productivity and profitability:
+Potato farmers in Tamil Nadu face the following persistent challenges that reduce productivity and profitability:
 
 Unreliable crop growth stage monitoring due to reliance on manual scouting.
 
@@ -30,7 +30,7 @@ These factors directly affect yield, income stability, and long-term soil qualit
 
 ## Why It Matters
 
-Even a 10% improvement in potato yield in Tamil Nadu translates to an additional 20,000 tonnes of production, boosting farmer incomes by ₹80–100 crore at today’s farm-gate prices. Optimizing growth stage interventions and nutrient management is not only a matter of food security—it is a path to economic transformation for farming Communities.
+Even a 10% improvement in potato yield in Tamil Nadu translates to an extrapolated additional 20,000 tonnes of production, boosting farmer incomes by approximately ₹80–100 crore at today’s farm-gate prices. Optimizing growth stage interventions and nutrient management is not only a matter of food security but a path to economic transformation for farming communities.
 
 ## Methodology
 
